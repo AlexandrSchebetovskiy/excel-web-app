@@ -10,15 +10,16 @@ const isDev = !isProd;
 const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 const jsLoaders = () => {
   const loaders = [
-      {
-        loader: 'babel-loader',
-        options: {
+    {
+      loader: 'babel-loader',
+      options: {
         presets: ['@babel/preset-env'],
-        plugins: ['@babel/plugin-proposal-object-rest-spread']
+        plugins: ['@babel/plugin-proposal-object-rest-spread',
+          '@babel/plugin-proposal-class-properties']
       }
     }
   ]
-  if(isDev){
+  if (isDev) {
     loaders.push('eslint-loader')
   }
   return loaders;
@@ -28,7 +29,7 @@ console.log(isDev);
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: ['@babel/polyfill','./index.js'],
+  entry: ['@babel/polyfill', './index.js'],
   output: {
     filename: filename('js'),
     path: path.resolve(__dirname, 'dist')
@@ -51,19 +52,19 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       template: 'index.html',
-      minify:{
-        removeComments:isProd,
-        collapseWhitespace:isProd
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd
       }
     }),
     new CopyPlugin(
-       [
-        {
-          from: path.resolve(__dirname, 'src/favicon.ico'),
-          to: path.resolve(__dirname, 'dist')
-        }
-        
-      ],
+        [
+          {
+            from: path.resolve(__dirname, 'src/favicon.ico'),
+            to: path.resolve(__dirname, 'dist')
+          }
+
+        ],
     ),
     new MiniCssExtractPlugin({
       filename: filename('css')
@@ -76,9 +77,9 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options:{
-              hmr:isDev,
-              reloadAll:true
+            options: {
+              hmr: isDev,
+              reloadAll: true
             }
           },
           'css-loader',
