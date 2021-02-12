@@ -32,6 +32,25 @@ class Dom {
   off(eventType, callback) {
     this.$el.removeEventListener(eventType, callback)
   }
+  closest(selector) {
+    return $(this.$el.closest(selector))
+  }
+  getCoord() {
+    return this.$el.getBoundingClientRect()
+  }
+  get data() {
+    return this.$el.dataset
+  }
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
+  }
+  css(styles = {}) {
+    for (const prop in styles) {
+      if (styles.hasOwnProperty( prop )) {
+        this.$el.style[prop] = styles[prop]
+      }
+    }
+  }
 }
 
 export function $(selector) {
