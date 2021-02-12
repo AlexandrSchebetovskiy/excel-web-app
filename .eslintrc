@@ -11,7 +11,12 @@
         "comma-dangle":"off",
         "require-jsdoc":"off",
         "linebreak-style":"off",
-        "operator-linebreak":"off"
+        "operator-linebreak":"off",
+        "no-unused-vars":"warn",
+        "spaced-comment":"warn",
+        "quotes":"warn",
+        "guard-for-in":"off"
+        
 
     },
     "extends": "google"
