@@ -19,8 +19,7 @@ function createCell(row) {
         data-col= "${col}" 
         data-type = "cell"
         data-id = "${row+1}:${col+1}"
-        >
-      </div>`
+        ></div>`
   }
 }
 
