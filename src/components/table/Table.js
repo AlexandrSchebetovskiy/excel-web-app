@@ -10,7 +10,7 @@ import {parse} from '@core/parse'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
-
+  static rowCount = 100
   constructor($root, options) {
     super($root, {
       name: 'Table',
@@ -20,7 +20,7 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(20, this.store.getState())
+    return createTable(Table.rowCount, this.store.getState())
   }
 
   prepare() {
